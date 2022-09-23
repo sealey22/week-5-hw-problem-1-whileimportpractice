@@ -21,13 +21,13 @@ int main() {
   // open the input file
   inFile.open("TestResultsData.dat");
 
-  //open the output file
+  // open the output file
   outFile.open("AnalyzeData.txt");
 
   // reaad in the data - first line of the file
   inFile >> date;
   cout << date << endl;
-  //add date to the ouptu file as the first line
+  // add date to the ouptu file as the first line
   outFile << date << endl;
 
   // read in the 2 pieces of info on the second line
@@ -36,31 +36,27 @@ int main() {
   inFile >> TestResult;
   cout << TestResult << endl;
 
-  while(inFile)
-    {
-        //update number of cases and persons tested
-      cumulative_cases = cumulative_cases + TestResult;
-      count++; //increment the number of patients
+  while (inFile) {
+    // update number of cases and persons tested
+    cumulative_cases = cumulative_cases + TestResult;
+    count++; // increment the number of patients
 
-      //read in the next line
-      inFile >> FirstName;
-      inFile >> TestResult;
-    }
+    // read in the next line
+    inFile >> FirstName;
+    inFile >> TestResult;
+  }
 
-    //output
-    outFile << "Number of persons tested = " << count << " ";
-    outFile << "\nTotal number of cases = " << cumulative_cases << " ";
+  // output
+  outFile << "Number of persons tested = " << count << " ";
+  outFile << "\nTotal number of cases = " << cumulative_cases << " ";
 
-    //report precalence as % with 2 decimals
-    outFile << fixed << showpoint << setprecision(2);
-    outFile << "The prevelence is ";
-    outFile << ( (static_cast<double>(cumulative_cases)) /count )*100;
-    outFile << " %" << endl;
+  // report precalence as % with 2 decimals
+  outFile << fixed << showpoint << setprecision(2);
+  outFile << "The prevelence is ";
+  outFile << ((static_cast<double>(cumulative_cases)) / count) * 100;
+  outFile << " %" << endl;
 
-    //close the input and output file
-    inFile.close();
-    outFile.close();
-  
-  
-  
+  // close the input and output file
+  inFile.close();
+  outFile.close();
 }
