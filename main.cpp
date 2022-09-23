@@ -12,7 +12,7 @@ int main() {
   string date;
   int TestResult;
   int count = 0;
-  int cumulative_cases = 0;
+  double cumulative_cases;
 
   // declare stream variables
   ifstream inFile;  // need to access the file we want to load
@@ -21,13 +21,40 @@ int main() {
   // open the input file
   inFile.open("TestResultsData.dat");
 
+  //open the output file
+  outFile.open("AnalyzeData.txt");
+
   // reaad in the data - first line of the file
   inFile >> date;
   cout << date << endl;
+  //add date to the ouptu file as the first line
+  outFile << date << endl;
 
   // read in the 2 pieces of info on the second line
   inFile >> FirstName;
   cout << FirstName << ' ';
   inFile >> TestResult;
   cout << TestResult << endl;
+
+  while(inFile)
+    {
+        //update number of cases and persons tested
+      cumulative_cases = cumulative_cases + TestResult;
+      count++; //increment the number of patients
+
+      //read in the next line
+      inFile >> FirstName;
+      inFile >> TestResult;
+    }
+
+    //output
+    outFile << "Number of persons tested = " << count << " ";
+    outFile << "\nTotal number of cases = " << cumulative_cases << " ";
+
+    //close the input and output file
+    inFile.close();
+    outFile.close();
+  
+  
+  
 }
